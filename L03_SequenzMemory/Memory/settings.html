@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="settings.css">
+    <script src="settings.js" ></script>
+    <title>Startseite - Memory</title>
+</head>
+<body>
+    <h1>Memory</h1>
+    <form id="Game settings">
+        <fieldset>
+            <legend>Wort</legend>
+            <input type="text" name="word" placeholder="Memory" required>
+        </fieldset>
+        <fieldset>
+            <legend>Zeit</legend>
+            <label for="gameTime">Spielzeit</label>
+            <input type="number" name="gameTime" step="1" min="5" max="120" value="30">
+        </fieldset>
+        <fieldset>
+            <legend>Größe</legend>
+            <input type="range" name="size" min="0" max="4" step="1" value="2">
+        </fieldset>
+        <fieldset>
+            <legend>Farben</legend>
+            <label for="background">Hintergrund</label>
+            <input type="color" name="background" value="#ffffff">
+            <label for="back">Kartenrückseite</label>
+            <input type="color" name="back" value="#008080">
+            <label for="fontColor">Schrift</label>
+            <input type="color" name="fontColor" value="#000000">
+        </fieldset>
+        <fieldset>
+            <legend>Schriftart</legend>
+            <input type="radio" name="fontFamily" value="arial" id="arial" checked>
+            <label for="arial">Arial</label>
+            <input type="radio" name="fontFamily" value="calibri" id="calibri">
+            <label for="calibri">Calibri</label>
+            <input type="radio" name="fontFamily" value="timesNewRoman" id="timesNewRoman">
+            <label for="timesNewRoman">Times New Roman</label>
+        </fieldset>
+        <button type="button" id="startButton">Spiel starten</button>
+    </form>
+    
+</body>
+</html>
