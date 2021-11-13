@@ -9,18 +9,9 @@
 </head>
 <body>
     <h1>Memory</h1>
-    <form id="Game settings">
+    <form id="settings">
         <fieldset>
-            <legend>Wort</legend>
-            <input type="text" name="word" placeholder="Memory" required>
-        </fieldset>
-        <fieldset>
-            <legend>Zeit</legend>
-            <label for="gameTime">Spielzeit</label>
-            <input type="number" name="gameTime" step="1" min="5" max="120" value="30">
-        </fieldset>
-        <fieldset>
-            <legend>Größe</legend>
+            <legend>Kartengröße</legend>
             <input type="range" name="size" min="0" max="4" step="1" value="2">
         </fieldset>
         <fieldset>
@@ -40,6 +31,17 @@
             <label for="calibri">Calibri</label>
             <input type="radio" name="fontFamily" value="timesNewRoman" id="timesNewRoman">
             <label for="timesNewRoman">Times New Roman</label>
+        </fieldset>
+        <fieldset>
+            <legend>Zeit</legend>
+            <label for="prepTime">Vorbereitungszeit</label>
+            <input type="number" name="prepTime" step="1" min="1" max="10" value="5">
+            <label for="gameTime">Spielzeit</label>
+            <input type="number" name="gameTime" step="1" min="5" max="120" value="30">
+        </fieldset>
+        <fieldset>
+            <legend>Sequenz</legend>
+            <input type="text" name="word" placeholder="Memory" required>
         </fieldset>
         <button type="button" id="startButton">Spiel starten</button>
     </form>
