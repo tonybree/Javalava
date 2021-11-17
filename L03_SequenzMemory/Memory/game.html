@@ -1,173 +1,53 @@
-<html lang="de"><head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Sequence Memory</title>
+		<link rel="stylesheet" href="game.css">
+		<script src="game.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+	<h1 style="text-align: center;">Sequence Memory</h1>
+	<div id="settings">
 
-    <title>L03Memory</title>
-    <link rel="stylesheet" href="game.css">
-    <script src="game.js" ></script>
-</head>
-<body>
-    <header>
-<h1>Memory</h1>
-    </header>
-        <div>
-            <p id="result"> </p>
-        </div>
-    <section id="cardContainer">
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div> 
-        <div class="card passive">
-            <p></p>
-        </div> 
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div> 
-        <div class="card passive">
-            <p></p>
-        </div> 
-        <div class="card passive">
-            <p></p>
-        </div>
-        <div class="card passive">
-            <p></p>
-        </div>
-    </section>
-    <footer id="footer">
-        <h2>Tony Hild | 262501</h2>
-    </footer>
+        <fieldset>
+			<legend>Wähle ein Wort</legend>
+			<input type="text" id="codename" name="Codename" value="Memory" minlength="2" maxlength="14";>
+		</fieldset>
 
+		<fieldset>
+			<legend>Kartengröße</legend>
+			<span id="slider">
+				<span>
+					50px
+					<input type="range"  name="Amount" class="CardSizeSlider" id="amount" min="50" max="250" step="10">
+					250px
+				</span>
+			</span>
+		</fieldset>
 
-</body></html>
+		<fieldset>
+			<legend>Farben</legend>
+			<p>Hintergrund <input type="color" id="backgroundColor" name="backgroundColor" value="#ffffff"></p>
+			<p>Karten <input type="color" id="cards" name="cardColor" value="#00000"></p>
+		</fieldset>
+
+		<fieldset>
+			<legend>Schrift</legend>
+			<select name="Font" class="dropdown" id="font">
+				<option style="font-family:Arial" id="Arial">Arial</option>
+				<option style="font-family:Comic Sans MS" id="ComicSans">comic sans MS</option>
+				<option style="font-family:Calibri" id="Calibri">calibri</option>
+			</select>
+		</fieldset>
+
+		<fieldset>
+			<legend>Zeit</legend>
+            Sekunden <input type="number" id="time" name="Time" value="60" min="5" max="120" step="5">
+            <button id="start">apply</button>
+		</fieldset>
+
+	</div>
+</body>
+
+</html>

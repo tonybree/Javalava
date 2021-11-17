@@ -1,50 +1,165 @@
-const signs: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y']; 
+namespace memory {
+    window.addEventListener("load", handleLoad);
 
-window.addEventListener('load', e => {
-    handleLoad();
-});
+    let sequence: string[];
+    let word: string[];
 
-function handleLoad() {
-    let queryString = window.location.search;
-    let urlParams = new URLSearchParams(queryString);
-    let cardAmount = urlParams.get('cardAmount');
-    processCardAmount(cardAmount);
-    setCardSigns(cardAmount);
+    let cardColor: string = "006400";
+    let cardFont: string = "arial";
+    let cardSize: string = "160px";
+    let timeOut: number = 60;
+    let rounds: number = 0;
 
-    let cardSize = urlParams.get('cardSize');
-    let cardColor = urlParams.get('cardColor');
-    let fieldColor = urlParams.get('fieldColor');
-    let fontColor = urlParams.get('fontColor');
-    let font = urlParams.get('font');
+    let showcase: HTMLElement = document.createElement("span");
 
-}
+    function handleLoad(_event: Event): void {
+        let slider: HTMLInputElement = <HTMLInputElement>document.querySelector("input#amount");
+        let backgroundColor: HTMLInputElement = <HTMLInputElement>document.querySelector("input#backgroundColor");
+        let font: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#font");
+        let cardColor: HTMLInputElement = <HTMLInputElement>document.querySelector("input#cards");
+        let time: HTMLInputElement = <HTMLInputElement>document.querySelector("input#time");
+        let begin: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#start");
 
-function processCardAmount(_cardAmount:number){
-    let cards = document.getElementsByClassName('card');
-    while (cards.length != _cardAmount) {
-        cards[cards.length - 1].remove();
+
+        slider.addEventListener("input", changeSize);
+        backgroundColor.addEventListener("input", changeBackground);
+        font.addEventListener("input", changeFont);
+        begin.addEventListener("click", load);
+        cardColor.addEventListener("input", changeCardColor);
+        time.addEventListener("input", timer);
+
     }
-}
 
-function setCardSigns(_cardAmount:number) {
-    let reducedSigns = signs;
-    while(reducedSigns.length != _cardAmount / 2) {
-        reducedSigns.splice(randomIndex(reducedSigns.length),1);
+    function timer(_event: Event): void {
+        let time: HTMLInputElement = <HTMLInputElement>document.querySelector("#time");
+        timeOut = Number(time.value);
     }
-    let doubledSigns = reducedSigns.concat(reducedSigns);
-    console.log(doubledSigns);
-    for (let i=0; i<doubledSigns.length; i++){
-        let newIndex = randomIndex(doubledSigns.length);
-        let valueNewIndex = doubledSigns[newIndex];
-        doubledSigns[newIndex] = doubledSigns[i];
-        doubledSigns[i] = valueNewIndex;
-    }
-    let cards = document.getElementsByClassName('card');
-    for (let i=0; i<cards.length; i++){
-        cards[i].firstElementChild!.innerHTML = doubledSigns[i];
-    }
-}
 
-function randomIndex(_arrayLength:number){
-    return Math.trunc(Math.random() * _arrayLength);
+    function setAttributes(): void {
+        showcase.setAttribute("style", "color:" + "; background:" + cardColor + "; height:" + cardSize + "; width:" + cardSize + "; font-Family:" + cardFont + "; display: inline-block; margin: 5px; text-align: center; line-height: 1; font-size: " + cardSize + "; vertical-align: middle");
+        showcase.setAttribute("id", "showcase");
+        showcase.innerHTML = " ";
+    }
+
+    function load(_event: MouseEvent): void {
+        let codeWord: HTMLInputElement = <HTMLInputElement>document.querySelector("#codename");
+        let secCodeWord: string = codeWord.value.replace(/ /gi, "_");
+        sequence = secCodeWord.split("");
+        document.getElementById("settings")!.style.display = "none";
+        startGame();
+    }
+    function changeSize(_event: Event): void {
+        console.log((<HTMLInputElement>_event.target).value);
+        cardSize = (<HTMLInputElement>_event.target).value + "px";
+        setAttributes();
+    }
+
+    function changeBackground(_event: Event): void {
+        document.body.style.backgroundColor = (<HTMLInputElement>_event.target).value;
+        setAttributes();
+    }
+    function changeFont(_event: Event): void {
+        cardFont = (<HTMLInputElement>_event.target).value;
+        setAttributes();
+
+    }
+
+    function changeCardColor(_event: Event): void {
+        cardColor = (<HTMLInputElement>_event.target).value;
+        setAttributes();
+    }
+
+    function startGame(): void {
+        word = sequence.slice();
+        word.sort(() => Math.random() - 0.5);
+        let game: HTMLElement = document.createElement("div");
+        document.body.appendChild(game);
+        game.setAttribute("id", "game");
+        for (let i: number = 0; i <= sequence.length - 1; i++) {
+            let span: HTMLElement = document.createElement("span");
+            game.appendChild(span);
+            span.classList.add("card");
+            span.setAttribute("id", "span" + i);
+            span.setAttribute("style", "color:" + "; background:" + cardColor + "; height:" + cardSize + "; width:" + cardSize + "; font-Family:" + cardFont + "; display: inline-block; margin: 5px; text-align: center; line-height: 1; font-size: " + cardSize + "; vertical-align: middle");
+            span.innerHTML = word[i];
+
+        }
+        setAttributes();
+        setTimeout(hideCards, sequence.length * 600);
+    }
+
+    function turnCard(_index: number): void {
+
+        if (rounds <= sequence.length) {
+            if (document.getElementById("span" + _index)!.style.borderStyle == "solid") {
+                console.log("Feld");
+            }
+            else if (document.getElementById("span" + _index)!.innerText == sequence[rounds]) {
+                document.getElementById("span" + _index)!.style.fontSize = cardSize;
+                document.getElementById("span" + _index)!.style.borderWidth = "thick";
+                document.getElementById("span" + _index)!.style.borderStyle = "solid";
+                rounds++;
+            } else {
+                hideCardsOnly();
+            }
+
+        }
+        if (rounds == sequence.length) {
+            clearInterval();
+            setTimeout(() => {
+                winner(_index);
+            },         10);
+        }
+    }
+
+    function hideCards(): void {
+        for (let i: number = 0; i <= sequence.length - 1; i++) {
+            let chosen: HTMLSpanElement = <HTMLSpanElement>document.querySelector("span#span" + i + ".card");
+
+            chosen.style.fontSize = "0px";
+        }
+        let clock: HTMLElement = document.createElement("p");
+        document.getElementById("game")!.prepend(clock);
+        clock.setAttribute("id", "clock");
+        document.getElementById("clock")!.innerText = timeOut.toString() + "s";
+        setInterval(updateTime, 1000);
+        let card: NodeList = document.querySelectorAll("span.card");
+
+        for (let index: number = 0; index < card.length; index++) {
+            card[index].addEventListener(
+                "click",
+                function (): void {
+                    turnCard(index);
+                },
+                false
+            );
+        }
+    }
+    function hideCardsOnly(): void {
+        for (let i: number = 0; i <= sequence.length - 1; i++) {
+            let chosen: HTMLSpanElement = <HTMLSpanElement>document.querySelector("span#span" + i + ".card");
+            chosen.style.fontSize = "0px";
+            rounds = 0;
+            document.getElementById("span" + i)!.style.borderStyle = "none";
+        }
+    }
+    function updateTime(): void {
+        if (timeOut == 0) {
+            window.location.reload();
+            alert("Du hast verloren...");
+        }
+        else {
+            timeOut--;
+            document.getElementById("clock")!.innerText = timeOut.toString() + "s";
+        }
+    }
+    function winner(_index: number): void {
+        document.getElementById("span" + _index)!.style.fontSize = cardSize;
+        document.getElementById("span" + _index)!.style.borderWidth = "thick";
+        document.getElementById("span" + _index)!.style.borderStyle = "solid";
+        window.location.reload();
+        alert("Du hast gewonnen!");
+    }
+
+
 }
