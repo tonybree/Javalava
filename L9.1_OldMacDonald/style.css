@@ -1,0 +1,15 @@
+body{
+    margin-left: 120px;
+    background-color: white;
+    }
+
+section {
+    margin-right: 700px;
+    margin-bottom: 20px;
+    box-shadow: 10px 5px 5px black;
+}
+
+button {
+    background-color: white;
+    color: black;
+  }
