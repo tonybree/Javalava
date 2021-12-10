@@ -43,10 +43,6 @@ namespace L9_OldMacDonald {
         let duckDiv: HTMLElement = document.getElementById("duck");
         let chickenDiv: HTMLElement = document.getElementById("chicken");
 
-        cowDiv.innerHTML = cow.species + "<br>";
-        pigDiv.innerHTML = pig.species + "<br>";
-        duckDiv.innerHTML = duck.species + "<br>";
-        chickenDiv.innerHTML = chicken.species + "<br>";
     }
 
     function feedAnimals(): void {

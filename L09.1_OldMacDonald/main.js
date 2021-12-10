@@ -29,10 +29,6 @@ var L9_OldMacDonald;
         let pigDiv = document.getElementById("pig");
         let duckDiv = document.getElementById("duck");
         let chickenDiv = document.getElementById("chicken");
-        cowDiv.innerHTML = cow.species + "<br>";
-        pigDiv.innerHTML = pig.species + "<br>";
-        duckDiv.innerHTML = duck.species + "<br>";
-        chickenDiv.innerHTML = chicken.species + "<br>";
     }
     function feedAnimals() {
         let cowDiv = document.getElementById("cow");
