@@ -112,8 +112,8 @@ namespace GoldenerHerbst {
             crc2.closePath();
 
             let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, -stepMax);
-            gradient.addColorStop(0, "grey");
-            gradient.addColorStop(0.9, "lightgrey");
+            gradient.addColorStop(0, "lightgrey");
+            gradient.addColorStop(0.9, "white");
             
             crc2.fillStyle = gradient;
             crc2.fill();
