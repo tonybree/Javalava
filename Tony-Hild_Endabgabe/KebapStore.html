@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="KebapStyle.css">
+    <title>KebapStore Game</title>
+    <script src="Store.js"></script>
+    <script src="Dish.js"></script>
+    <script src="DishType.js"></script>
+    <script src="Ingredient.js"></script>
+    <script src="IngredientPositionType.js"></script>
+    <script src="IngredientType.js"></script>
+    <script src="Moveable.js"></script>
+    <script src="Order.js"></script>
+    <script src="Task.js"></script>
+    <script src="Vector.js"></script>
+    <script src="Worker.js"></script>
+    <script src="Customer.js"></script>
+
+
+</head>
+<body>
+    <h1>KebapStore</h1>
+
+    <div class="div1">
+      <form id="settings">
+        <label for="workersAmount">Mitarbeiter:</label>
+        <input type="range" id="vol" name="vol" min="1" max="3">
+    </div>
+    <div class="div2">
+        <label for="workersEndurance">Ausdauer:</label>
+        <input type="range" id="vol" name="vol" min="1" max="3">
+    </div>
+    <div class="div1">
+        <label for="customerTempo">Kunden Tempo:</label>
+        <input type="range" id="vol" name="vol" min="1" max="3">
+    </div>
+    <div class="div2">
+        <label for="backCapa">Kapazität Rohmaterial:</label>
+        <input type="range" id="vol" name="vol" min="1" max="3">
+    </div>
+    <div class="div1">
+        <label for="frontCapa">Kapazität Behälter:</label>
+        <input type="range" id="vol" name="vol" min="1" max="3"> 
+        <p>niedrig mittel hoch</p>
+      </form>
+      </div>
+
+    <button type="button" id="startButton">Start</button>   
+    <canvas id="KepabStoreCanvas" width="1000" height="600"></canvas>
+    <button type="cancelButton" id="cancelButton">Rückgängig</button>
+    <button type="handButton" id="handButton">Gericht Ausgeben</button>
+</body>
+</html>
